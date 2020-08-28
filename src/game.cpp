@@ -10,6 +10,12 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
   PlaceFood();
 }
 
+Game::~Game(){
+  std::cout << "Game has terminated successfully!\n";
+  std::cout << "Score: " << GetScore() << "\n";
+  std::cout << "Size: " << GetSize() << "\n";
+}
+
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
