@@ -21,6 +21,8 @@ fstream
 -
 sstream
 -
+thread
+-
 
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/game.h
 player.h

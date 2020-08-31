@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <thread>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
@@ -10,8 +11,9 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1))
 {
-  ReadHighscoreFromFile();
+  std::thread t(&Game::ReadHighscoreFromFile,this);
   PlaceFood();
+  t.join();
 }
 
 Game::~Game()
