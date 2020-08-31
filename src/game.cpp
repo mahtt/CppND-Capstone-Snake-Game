@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
@@ -15,48 +16,60 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
 
 Game::~Game()
 {
-  if (player.GetScore() > highscore)
+  if (player.GetScore() > GetHighscore())
+  {
+    std::cout << "Congratulations! New Highscore! \n";
+    std::cout << "Your Score: " << player.GetScore() << "\n";
     UpdateHighscore();
-  std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << player.GetScore() << "\n";
-  std::cout << "Size: " << GetSize() << "\n";
+  }
+  else
+  {
+    std::cout << "Game has terminated successfully!\n";
+    std::cout << "Your score was: " << player.GetScore() << "\n";
+    std::cout << "The highscore is " << GetHighscore() << " of " << GetNameOfPlayerHoldingHighscore() << ".\n";
+    std::cout << "Maybe it will be yours next time! :)";
+  }
 }
 
 void Game::ReadHighscoreFromFile()
 {
+  std::string highscore, playerName;
   std::ifstream file;
   std::string line;
   file.open("highscore_data.txt");
-  //if file doesn't exist, create it and save "0" as highscore
+  //if file doesn't exist, create it and save "0" as highscore ans "-" as player name
   if (!file)
   {
     std::ofstream createFile;
     createFile.open("highscore_data.txt");
-    createFile << "0";
+    createFile << "0 -";
     createFile.close();
     file.open("highscore_data.txt");
   }
-  /*
-  if (file)
-  {
-    std::cout << "Success \n";
-  }
-  else
-  {
-    std::cout << "Failure \n";
-  }*/
-  while (getline(file, line))
-    ;
-  highscore = std::stoi(line);
+  std::getline(file, line);
+  std::istringstream linestream(line);
+  linestream >> highscore >> playerName;
+  SetHighscore(std::stoi(highscore));
+  SetNameOfPlayerHoldingHighscore(playerName);
 }
 
 void Game::UpdateHighscore()
 {
+
   std::ofstream file;
-    file.open("highscore_data.txt");
-    file << player.GetScore();
-    file.close();
+  file.open("highscore_data.txt");
+  file << player.GetScore() << " " << AskPlayerForName();
+  file.close();
 }
+
+std::string Game::AskPlayerForName()
+{
+  std::string name;
+  std::cout << "Pleas tell me your name, so it can be saved with your score: ";
+  std::cin >> name;
+  return name;
+}
+
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration)
 {
@@ -141,5 +154,8 @@ void Game::Update()
   }
 }
 
-//int Game::GetScore() const { return score; }
+int Game::GetHighscore() const { return _highscore; }
 int Game::GetSize() const { return snake.size; }
+std::string Game::GetNameOfPlayerHoldingHighscore() const { return _nameOfPlayerHoldingHighscore; }
+void Game::SetHighscore(int score) { _highscore = score; }
+void Game::SetNameOfPlayerHoldingHighscore(std::string name) { _nameOfPlayerHoldingHighscore = name; }

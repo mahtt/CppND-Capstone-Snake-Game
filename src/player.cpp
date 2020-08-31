@@ -5,12 +5,6 @@ Player::Player(){
     //_name = AskPlayerForName();
 }
 
-std::string Player::AskPlayerForName(){
-  std::string name;
-  std::cout << "What is your name? ";
-  std::cin >> name;
-  return name;
-}
 
 
 int Player::GetScore() const {return _score;}

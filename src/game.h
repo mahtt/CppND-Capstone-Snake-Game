@@ -15,8 +15,12 @@ class Game {
   ~Game();
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
-  int GetScore() const;
+  int GetHighscore() const;
   int GetSize() const;
+  std::string GetNameOfPlayerHoldingHighscore() const;
+  
+  void SetHighscore(int score);
+  void SetNameOfPlayerHoldingHighscore(std::string name);
 
   
 
@@ -24,7 +28,9 @@ class Game {
   Snake snake;
   Player player;
   SDL_Point food;
-  int highscore;
+  
+  int _highscore;
+  std::string _nameOfPlayerHoldingHighscore;
 
   std::random_device dev;
   std::mt19937 engine;
@@ -36,6 +42,8 @@ class Game {
   void Update();
   void ReadHighscoreFromFile(); //reads current highscore from file
   void UpdateHighscore();
+  std::string AskPlayerForName();
+  
 };
 
 #endif

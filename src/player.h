@@ -13,9 +13,9 @@ class Player{
     void SetPlayerName(std::string name){_name = name;}
 
     private:
-    std::string _name;
+    std::string _name{"-"}; 
     int _score{0};
 
-    std::string AskPlayerForName();
+    //std::string AskPlayerForName();
 };
 #endif
