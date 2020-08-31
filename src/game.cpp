@@ -1,23 +1,65 @@
 #include "game.h"
-#include <iostream>
 #include "SDL.h"
+#include <iostream>
+#include <fstream>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
-      random_h(0, static_cast<int>(grid_height - 1)) {
+      random_h(0, static_cast<int>(grid_height - 1))
+{
+  ReadHighscoreFromFile();
   PlaceFood();
 }
 
-Game::~Game(){
+Game::~Game()
+{
+  if (player.GetScore() > highscore)
+    UpdateHighscore();
   std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << GetScore() << "\n";
+  std::cout << "Score: " << player.GetScore() << "\n";
   std::cout << "Size: " << GetSize() << "\n";
 }
 
+void Game::ReadHighscoreFromFile()
+{
+  std::ifstream file;
+  std::string line;
+  file.open("highscore_data.txt");
+  //if file doesn't exist, create it and save "0" as highscore
+  if (!file)
+  {
+    std::ofstream createFile;
+    createFile.open("highscore_data.txt");
+    createFile << "0";
+    createFile.close();
+    file.open("highscore_data.txt");
+  }
+  /*
+  if (file)
+  {
+    std::cout << "Success \n";
+  }
+  else
+  {
+    std::cout << "Failure \n";
+  }*/
+  while (getline(file, line))
+    ;
+  highscore = std::stoi(line);
+}
+
+void Game::UpdateHighscore()
+{
+  std::ofstream file;
+    file.open("highscore_data.txt");
+    file << player.GetScore();
+    file.close();
+}
 void Game::Run(Controller const &controller, Renderer &renderer,
-               std::size_t target_frame_duration) {
+               std::size_t target_frame_duration)
+{
   Uint32 title_timestamp = SDL_GetTicks();
   Uint32 frame_start;
   Uint32 frame_end;
@@ -25,7 +67,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   int frame_count = 0;
   bool running = true;
 
-  while (running) {
+  while (running)
+  {
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
@@ -41,8 +84,9 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_duration = frame_end - frame_start;
 
     // After every second, update the window title.
-    if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+    if (frame_end - title_timestamp >= 1000)
+    {
+      renderer.UpdateWindowTitle(player.GetScore(), frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -50,20 +94,24 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // If the time for this frame is too small (i.e. frame_duration is
     // smaller than the target ms_per_frame), delay the loop to
     // achieve the correct frame rate.
-    if (frame_duration < target_frame_duration) {
+    if (frame_duration < target_frame_duration)
+    {
       SDL_Delay(target_frame_duration - frame_duration);
     }
   }
 }
 
-void Game::PlaceFood() {
+void Game::PlaceFood()
+{
   int x, y;
-  while (true) {
+  while (true)
+  {
     x = random_w(engine);
     y = random_h(engine);
     // Check that the location is not occupied by a snake item before placing
     // food.
-    if (!snake.SnakeCell(x, y)) {
+    if (!snake.SnakeCell(x, y))
+    {
       food.x = x;
       food.y = y;
       return;
@@ -71,8 +119,10 @@ void Game::PlaceFood() {
   }
 }
 
-void Game::Update() {
-  if (!snake.alive) return;
+void Game::Update()
+{
+  if (!snake.alive)
+    return;
 
   snake.Update();
 
@@ -80,8 +130,10 @@ void Game::Update() {
   int new_y = static_cast<int>(snake.head_y);
 
   // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
-    score++;
+  if (food.x == new_x && food.y == new_y)
+  {
+    //score++;
+    player.IncreaseScoreAfterFood();
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
@@ -89,5 +141,5 @@ void Game::Update() {
   }
 }
 
-int Game::GetScore() const { return score; }
+//int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }

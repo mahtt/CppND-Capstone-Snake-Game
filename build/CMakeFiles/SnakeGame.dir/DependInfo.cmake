@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/dev/DEV/CppND-Capstone-Snake-Game/src/controller.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/controller.cpp.o"
   "/home/dev/DEV/CppND-Capstone-Snake-Game/src/game.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/game.cpp.o"
   "/home/dev/DEV/CppND-Capstone-Snake-Game/src/main.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/main.cpp.o"
+  "/home/dev/DEV/CppND-Capstone-Snake-Game/src/player.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/player.cpp.o"
   "/home/dev/DEV/CppND-Capstone-Snake-Game/src/renderer.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/renderer.cpp.o"
   "/home/dev/DEV/CppND-Capstone-Snake-Game/src/snake.cpp" "/home/dev/DEV/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/snake.cpp.o"
   )
