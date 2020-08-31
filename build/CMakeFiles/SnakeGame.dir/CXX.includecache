@@ -10,20 +10,6 @@
 snake.h
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/snake.h
 
-/home/dev/DEV/CppND-Capstone-Snake-Game/src/game.cpp
-game.h
-/home/dev/DEV/CppND-Capstone-Snake-Game/src/game.h
-SDL.h
-/home/dev/DEV/CppND-Capstone-Snake-Game/src/SDL.h
-iostream
--
-fstream
--
-sstream
--
-thread
--
-
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/game.h
 player.h
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/player.h
@@ -37,6 +23,20 @@ snake.h
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/snake.h
 random
 -
+
+/home/dev/DEV/CppND-Capstone-Snake-Game/src/main.cpp
+iostream
+-
+memory
+-
+controller.h
+/home/dev/DEV/CppND-Capstone-Snake-Game/src/controller.h
+game.h
+/home/dev/DEV/CppND-Capstone-Snake-Game/src/game.h
+renderer.h
+/home/dev/DEV/CppND-Capstone-Snake-Game/src/renderer.h
+player.h
+/home/dev/DEV/CppND-Capstone-Snake-Game/src/player.h
 
 /home/dev/DEV/CppND-Capstone-Snake-Game/src/player.h
 string

@@ -67,7 +67,7 @@ void Game::UpdateHighscore()
 std::string Game::AskPlayerForName()
 {
   std::string name;
-  std::cout << "Pleas tell me your name, so it can be saved with your score: ";
+  std::cout << "Please tell me your name, so it can be saved with your score: ";
   std::cin >> name;
   return name;
 }
