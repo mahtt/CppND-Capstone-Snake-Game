@@ -1,9 +1,7 @@
 #include "player.h"
 #include <iostream>
 
-Player::Player(){
-    //_name = AskPlayerForName();
-}
+Player::Player(){}
 
 
 
