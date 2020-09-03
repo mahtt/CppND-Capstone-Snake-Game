@@ -15,7 +15,5 @@ class Player{
     private:
     std::string _name{"-"}; 
     int _score{0};
-
-    //std::string AskPlayerForName();
 };
 #endif
