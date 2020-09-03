@@ -1,15 +1,28 @@
 # CPPND: Capstone Snake Game Example
 
 This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+<img src="snake_game.gif"/>
 
 ## Additions to the starter code
 The main addition I made to the snake game is storing the high.
-If the current user has the new high score, the program asks the user to provide it’s name. Below are the rubrics my program meets.
- 
+If the current user has the new high score, the program asks the user to provide it’s name. 
 
-<img src="snake_game.gif"/>
+Below are the rubrics my program meets.
+### Loops, Functions, I/O
+* The project reads data from a file and process the data: [Game::ReadHighscoreFromFile()](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/game.cpp#L36)
+* The project writes data to a file: [Game::UpdateHighscore()](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/game.cpp#L58)
+* The project accepts user input and processes the input: [Game::AskPlayerForName()](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/game.cpp#L67)
 
-## Dependencies for Running Locally
+### Object Oriented Programming
+* The project uses Object Oriented Programming techniques (e.g. appropriate access specifiers for class members, abstraction of implementation details, encapsulation of behavior): [player.h](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/player.h#L6)
+
+### Memory Managmnent
+* The project uses smart pointers instead of raw pointers: [main.cpp](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/main.cpp#L16)
+
+### Concurrency
+* The project uses multithreading: [game.cpp](https://github.com/mahtt/CppND-Capstone-Snake-Game/blob/86c50464c46c6f1556959d254ae4fae3fd8b413e/src/game.cpp#L14)
+
+# Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
 * make >= 4.1 (Linux, Mac), 3.81 (Windows)
